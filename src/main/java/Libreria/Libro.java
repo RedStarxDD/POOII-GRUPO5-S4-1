@@ -60,4 +60,9 @@ public class Libro {
     public void setFueAdquirido(boolean fueAdquirido) {
         this.fueAdquirido = fueAdquirido;
     }
+
+    @Override
+    public String toString() {
+        return "Libro{" + "idLibro=" + idLibro + ", titulo=" + titulo + ", autor=" + autor.getNombre() + ", fueLeido=" + fueLeido + ", fueAdquirido=" + fueAdquirido + '}';
+    }
 }

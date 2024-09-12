@@ -7,7 +7,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -17,10 +16,12 @@ import javax.swing.JOptionPane;
 public class TextManager {
    private ArrayList<Libro> libros = new ArrayList();
    private ArrayList<Autor> autores = new ArrayList();
+   private int idUsados;
 
    public TextManager() {
       this.cargarArchivo("autores");
       this.cargarArchivo("libros");
+      idUsados=0;
    }
 
    public ArrayList<Libro> getLibros() {
@@ -31,16 +32,14 @@ public class TextManager {
       return this.autores;
    }
 
+    public int getIdUsados() {
+        return idUsados;
+    }
+   
    public void listarLibros() {
-      Iterator var1 = this.libros.iterator();
-
-      while(var1.hasNext()) {
-         Libro l = (Libro)var1.next();
-         PrintStream var10000 = System.out;
-         String var10001 = l.getTitulo();
-         var10000.println(var10001 + " " + l.getAutor().getNombre());
-      }
-
+       for (Libro libro : libros) {
+           System.out.println(libro.toString());
+       }
    }
 
    private void readFromInputStream(InputStream inputStream, String archivo) throws IOException {
@@ -98,6 +97,7 @@ public class TextManager {
       String nombre = st.nextToken().trim();
       Autor autor = new Autor(idAutor, nombre);
       this.autores.add(autor);
+      idUsados++;
    }
 
    private void cargarArchivo(String nombre) {
@@ -116,23 +116,26 @@ public class TextManager {
 
    }
 
-   public void agregarAutor(String idAutor, String nombre) {
+   public void agregarAutor(String nombre) {
       try {
-         File file = new File("./src/main/java/autores.txt");
+         File file = new File("./target/classes/autores.txt");
          FileWriter fw = new FileWriter(file, true);
          PrintWriter pw = new PrintWriter(fw);
-         pw.println(idAutor + ", " + nombre);
+         idUsados++;
+         pw.println(idUsados + ", " + nombre);
          pw.close();
-         Autor autor = new Autor(idAutor, nombre);
+         Autor autor = new Autor(String.valueOf(idUsados), nombre);
          this.autores.add(autor);
          this.listarLibros();
       } catch (Exception var7) {
+          System.out.println("Error");
       }
 
    }
 
    public void agregarLibro(String idLibro, String titulo, Autor autor, boolean fueLeido, boolean fueAdquirido) {
       try {
+          System.out.println("ok");
          File file = new File("./target/classes/libros.txt");
          FileWriter fw = new FileWriter(file, true);
          PrintWriter pw = new PrintWriter(fw);
@@ -142,6 +145,7 @@ public class TextManager {
          this.libros.add(libro);
          this.listarLibros();
       } catch (Exception var10) {
+          System.out.println("Error");
       }
 
    }

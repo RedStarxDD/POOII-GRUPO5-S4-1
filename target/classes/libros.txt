@@ -1,2 +1,3 @@
-0, Sin Título, 0, false, false1, El Libro Troll del Rubius, 0, true, true
+0, Sin Título, 0, false, false
 1, El Libro Troll del Rubius, 0, true, true
+2, La ciudad y los perros, 1, true, false
