@@ -16,12 +16,11 @@ import javax.swing.JOptionPane;
 public class TextManager {
    private ArrayList<Libro> libros = new ArrayList();
    private ArrayList<Autor> autores = new ArrayList();
-   private int idUsados;
+   private int idUsados=0;
 
    public TextManager() {
       this.cargarArchivo("autores");
       this.cargarArchivo("libros");
-      idUsados=0;
    }
 
    public ArrayList<Libro> getLibros() {
@@ -117,20 +116,19 @@ public class TextManager {
    }
 
    public void agregarAutor(String nombre) {
-      try {
-         File file = new File("./target/classes/autores.txt");
-         FileWriter fw = new FileWriter(file, true);
-         PrintWriter pw = new PrintWriter(fw);
-         idUsados++;
-         pw.println(idUsados + ", " + nombre);
-         pw.close();
-         Autor autor = new Autor(String.valueOf(idUsados), nombre);
-         this.autores.add(autor);
-         this.listarLibros();
-      } catch (Exception var7) {
-          System.out.println("Error");
-      }
-
+    try {
+        File file = new File("./target/classes/autores.txt");
+        FileWriter fw = new FileWriter(file, true);
+        PrintWriter pw = new PrintWriter(fw);
+        pw.println(idUsados + ", " + nombre);
+        pw.close();
+        Autor autor = new Autor(String.valueOf(idUsados), nombre);
+        this.autores.add(autor);
+        this.listarLibros();
+        idUsados++;
+    } catch (Exception var7) {
+        System.out.println("Error");
+    }
    }
 
    public void agregarLibro(String idLibro, String titulo, Autor autor, boolean fueLeido, boolean fueAdquirido) {

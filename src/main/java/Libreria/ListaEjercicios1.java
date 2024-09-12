@@ -19,15 +19,15 @@ public class ListaEjercicios1 {
         
         //txtManager.agregarLibro("1", "El Libro Troll del Rubius", autores.get(0), true, true);
         
-        /*java.awt.EventQueue.invokeLater(new Runnable() {
+        java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new CrearLibro(txtManager).setVisible(true);
             }
-        });*/
-        java.awt.EventQueue.invokeLater(new Runnable() {
+        });
+        /*java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new BuscarLibro(txtManager).setVisible(true);
             }
-        });
+        });*/
     }
 }
