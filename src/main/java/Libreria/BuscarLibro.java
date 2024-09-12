@@ -12,6 +12,10 @@ import javax.swing.table.DefaultTableModel;
  */
 public class BuscarLibro extends javax.swing.JFrame {
     private TextManager txtManager;
+    String[] columns = {"ID", "Titulo", "Leido", "Tengo", "Autor"};
+    DefaultTableModel model = new DefaultTableModel(null, columns); // you need to define rows and columns for yourself
+    String[] rows = new String[5];
+    
     /**
      * Creates new form BuscarLibro
      */
@@ -185,16 +189,18 @@ public class BuscarLibro extends javax.swing.JFrame {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
-        /*String[][] rows = {{"", ""}};
-        String[] columns = {"ID", "Titulo", "Leido", "Tengo", "Autor"};
-        DefaultTableModel model = new DefaultTableModel(rows, columns); // you need to define rows and columns for yourself
-        model.setValueAt("Test", 0, 0); // Again, you need to define the variables for your self
         
         for (Libro l : txtManager.getLibros()) {
             if(l.getIdLibro().equals(txtID.getText())){
-                //tblLibros.set
+                rows[0] = l.getIdLibro();
+                rows[1] = l.getTitulo();
+                rows[2] = String.valueOf(l.isFueLeido());
+                rows[3] = String.valueOf(l.isFueAdquirido());
+                rows[4] = l.getAutor().getNombre();
+                model.addRow(rows);
+                tblLibros.setModel(model);
             }
-        }*/
+        }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
   
